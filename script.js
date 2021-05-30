@@ -9,7 +9,6 @@ let constraints = { video: true, audio: false };
 let mediaRecorder;
 let isRecording = false;
 let chunks = [];
-
 let minzoom = 1;
 let maxzoom = 3;
 let currzoom = 1;
