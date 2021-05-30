@@ -1,27 +1,21 @@
 let video = document.querySelector("video");
-let vidBtn = document.querySelector("button#record");
-
-let capBtn = document.querySelector("button#capture");
+let VidBtn = document.querySelector("button");
 let constraints = { video: true, audio: true };
 let mediaRecorder;
 let isRecording = false;
 let chunks = [];
 
-vidBtn.addEventListener("click", function () {
+VidBtn.addEventListener("click", function () {
   if (isRecording) {
     mediaRecorder.stop();
     isRecording = false;
-    vidBtn.innerText = "Record";
+    VidBtn.innerText = "Record";
   } else {
     mediaRecorder.start();
     isRecording = true;
-    vidBtn.innerText = "Recording...";
+    VidBtn.innerText = "Recording...";
   }
 });
-
-capBtn.addEventListener("click", function(){
-    capture();
-})
 
 navigator.mediaDevices.getUserMedia(constraints).then(function (mediaStream) {
   video.srcObject = mediaStream;
@@ -45,16 +39,3 @@ navigator.mediaDevices.getUserMedia(constraints).then(function (mediaStream) {
     a.remove();
   });
 });
-
-function capture(){
-    let c = document.createElement("canvas");
-    c.width = video.videoWidth;
-    c.height = video.videoHeight;
-    let ctx= c.getContext("2d");
-    ctx.drawImage(video,0,0);
-    let a = document.createElement("a");
-    a.download = "image.png";
-    a.href = c.toDataURL();
-    a.click();
-    a.remove();
-}
