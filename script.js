@@ -6,7 +6,7 @@ let mediaRecorder;
 let isRecording = false;
 let chunks = [];
 
-VidBtn.addEventListener("click", function () {
+vidBtn.addEventListener("click", function () {
   let innerDiv = vidBtn.querySelector("div");
 
   if (isRecording) {
@@ -31,8 +31,8 @@ capBtn.addEventListener("click", function () {
 
 navigator.mediaDevices.getUserMedia(constraints).then(function (mediaStream) {
   video.srcObject = mediaStream;
-  let options = { mimeType: "video/webm; codecs=vp9" };
-  mediaRecorder = new MediaRecorder(mediaStream, options);
+
+  mediaRecorder = new MediaRecorder(mediaStream);
 
   mediaRecorder.addEventListener("dataavailable", function (e) {
     chunks.push(e.data);
@@ -40,6 +40,7 @@ navigator.mediaDevices.getUserMedia(constraints).then(function (mediaStream) {
 
   mediaRecorder.addEventListener("stop", function () {
     let blob = new Blob(chunks, { type: "video/mp4" });
+
     chunks = [];
 
     let url = URL.createObjectURL(blob);
@@ -59,7 +60,7 @@ function capture() {
   let ctx = c.getContext("2d");
   ctx.drawImage(video, 0, 0);
   let a = document.createElement("a");
-  a.download = "image.png";
+  a.download = "image.jpg";
   a.href = c.toDataURL();
   a.click();
   a.remove();
