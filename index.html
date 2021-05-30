@@ -8,51 +8,8 @@
   </head>
   <body>
     <video autoplay controls></video>
-    <button>Record</button>
-    <script>
-      let video = document.querySelector("video");
-      let btn = document.querySelector("button");
-      let constraints = { video: true, audio: true };
-      let mediaRecorder;
-      let isRecording = false;
-      let chunks = [];
-
-      btn.addEventListener("click", function () {
-        if (isRecording) {
-          mediaRecorder.stop();
-          isRecording = false;
-          btn.innerText = "Record";
-        } else {
-          mediaRecorder.start();
-          isRecording = true;
-          btn.innerText = "Recording...";
-        }
-      });
-
-      navigator.mediaDevices
-        .getUserMedia(constraints)
-        .then(function (mediaStream) {
-          video.srcObject = mediaStream;
-          let options = { mimeType: "video/webm; codecs=vp9" };
-          mediaRecorder = new MediaRecorder(mediaStream, options);
-
-          mediaRecorder.addEventListener("dataavailable", function (e) {
-            chunks.push(e.data);
-          });
-
-          mediaRecorder.addEventListener("stop", function () {
-            let blob = new Blob(chunks, { type: "video/mp4" });
-            chunks = [];
-
-            let url = URL.createObjectURL(blob);
-
-            let a = document.createElement("a");
-            a.href = url;
-            a.download = "video.mp4";
-            a.click();
-            a.remove();
-          });
-        });
-    </script>
+    <button id = "record">Record</button>
+    <button id = "capture">Capture</button>
+    <script src ="script.js"></script>
   </body>
 </html>
