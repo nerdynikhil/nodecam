@@ -74,27 +74,26 @@ video {
   }
 }
 
-.filter-container{
+.filter-container {
   height: 25rem;
   width: 5rem;
-  position:fixed;
+  position: fixed;
   left: 2rem;
-  top: calc((100vh - 25rem)/2);
+  top: calc((100vh - 25rem) / 2);
   background-color: red;
 }
 
-.filters{
+.filters {
   z-index: 3;
   border: 5px solid white;
   width: 100%;
-  height: calc(25rem/6);
+  height: calc(25rem / 6);
   background: url(fill.jpg);
   background-size: cover;
   background-blend-mode: soft-light;
-
 }
 
-.zoom-in-out-container{
+.zoom-in-out-container {
   z-index: 3;
   height: 10rem;
   width: 5rem;
@@ -104,7 +103,7 @@ video {
   border: 5px solid white;
 }
 
-.zoom-in-out-container div{
+.zoom-in-out-container div {
   width: 100%;
   height: 50%;
   color: white;
@@ -114,7 +113,7 @@ video {
   background-color: rgb(70, 70, 70);
 }
 
-.filter div{
+.filter div {
   height: 100vh;
   width: 100vw;
   position: fixed;

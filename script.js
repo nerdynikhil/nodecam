@@ -1,23 +1,42 @@
 let video = document.querySelector("video");
 let vidBtn = document.querySelector("button#record");
-let capBtn = document.querySelector("button#capture");
 let body = document.querySelector("body");
-let filters = document.querySelectorAll(".filters");
-let constraints = { video: true, audio: true };
+let capBtn = document.querySelector("button#capture");
+let filters = document.querySelectorAll(".filter");
+let zoomin = document.querySelector(".zoom-in");
+let zoomout = document.querySelector(".zoom-out");
+let constraints = { video: true, audio: false };
 let mediaRecorder;
 let isRecording = false;
 let chunks = [];
 
+let minzoom = 1;
+let maxzoom = 3;
+let currzoom = 1;
 let filter = "";
 
-for (let i = 0;i<filters.length;i++){
-    filters[i].addEventListener("click", function(e){
-        filter = e.currentTarget.style.backgroundColor;
-        removeFilter();
-        applyFilter(filter);
-    });
+for (let i = 0; i < filters.length; i++) {
+  filters[i].addEventListener("click", function (e) {
+    filter = e.currentTarget.style.backgroundColor;
+    removefilter();
+    applyfilter(filter);
+  });
 }
-
+zoomin.addEventListener("click", function () {
+  let videocurrscale = video.style.transform.split("(")[1].split(")")[0];
+  if (videocurrscale > maxzoom) {
+    return;
+  } else {
+    currzoom = Number(videocurrscale) + 0.1;
+    video.style.transform = `scale(${currzoom})`;
+  }
+});
+zoomout.addEventListener("click", function () {
+  if (currzoom > minzoom) {
+    currzoom -= 0.1;
+    video.style.transform = `scale(${currzoom})`;
+  }
+});
 vidBtn.addEventListener("click", function () {
   let innerDiv = vidBtn.querySelector("div");
 
@@ -28,7 +47,7 @@ vidBtn.addEventListener("click", function () {
   } else {
     mediaRecorder.start();
     filter = "";
-    removeFilter();
+    removefilter();
     isRecording = true;
     innerDiv.classList.add("record-animation");
   }
@@ -72,10 +91,15 @@ function capture() {
   c.width = video.videoWidth;
   c.height = video.videoHeight;
   let ctx = c.getContext("2d");
+
+  ctx.translate(c.width / 2, c.height / 2);
+  ctx.scale(currzoom, currzoom);
+  ctx.translate(-c.width / 2, -c.height / 2);
+
   ctx.drawImage(video, 0, 0);
-  if (filter != ""){
-    ctx.fillStyle= filter;
-    ctx.fillRect(0,0,c.width,c.height);
+  if (filter != "") {
+    ctx.fillStyle = filter;
+    ctx.fillRect(0, 0, c.width, c.height);
   }
   let a = document.createElement("a");
   a.download = "image.jpg";
@@ -83,17 +107,13 @@ function capture() {
   a.click();
   a.remove();
 }
-
-function applyFilter(filterColor){
-    let filterDiv= document.createElement("div");
-    filterDiv.classList.add("filter-div");
-    filterDiv.style.backgroundColor = filterColor;
-    body.appendChild(filterDiv);
-
+function applyfilter(filterColor) {
+  let filterdiv = document.createElement("div");
+  filterdiv.classList.add("filter-div");
+  filterdiv.style.backgroundColor = filterColor;
+  body.appendChild(filterdiv);
 }
-
-function removeFilter(){
-    let filterDiv = document.querySelector(".filter-div");
-    if (filterDiv)
-    filterDiv.remove();
+function removefilter() {
+  let filterdiv = document.querySelector(".filter-div");
+  if (filterdiv) filterdiv.remove();
 }
