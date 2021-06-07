@@ -89,7 +89,7 @@ video {
   border: 2px solid white;
   width: 100%;
   height: calc(25rem / 6);
-  background: url(fil.jpg);
+  background: url(fill.jpg);
   background-size: cover;
   background-blend-mode: soft-light;
 }
