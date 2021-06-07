@@ -74,33 +74,33 @@ video {
   }
 }
 
-.filters {
-  z-index: 3;
+
+.filter-container {
   height: 25rem;
   width: 5rem;
+  z-index: 3;
   position: fixed;
   left: 2rem;
   top: calc((100vh - 25rem) / 2);
+  background-color: red;
 }
 
-.filter {
-  
-  border: 5px solid white;
+.filters {
+  border: 2px solid white;
   width: 100%;
   height: calc(25rem / 6);
-  background: url(fill.jpg);
+  background: url(fil.jpg);
   background-size: cover;
   background-blend-mode: soft-light;
 }
 
 .zoom-in-out-container {
-  z-index: 3;
   height: 10rem;
   width: 5rem;
   position: fixed;
+  z-index: 3;
   right: 2rem;
   top: 8rem;
-  border: 5px solid white;
 }
 
 .zoom-in-out-container div {
@@ -110,7 +110,7 @@ video {
   font-size: 3.5rem;
   font-weight: bold;
   text-align: center;
-  background-color: rgb(70, 70, 70);
+  background-color: #2f3640;
 }
 
 .filter-div {
@@ -118,4 +118,13 @@ video {
   width: 100vw;
   position: fixed;
   top: 0;
+}
+
+#gallery {
+  position: fixed;
+  z-index: 3;
+  right: 2rem;
+  height: 5rem;
+  width: 5rem;
+  bottom: 8rem;
 }

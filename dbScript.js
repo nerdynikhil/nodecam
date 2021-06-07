@@ -77,8 +77,9 @@ function viewMedia(){
             
             video.pause();
         })
-        video.controls= true;
+        video.controls = true;
         video.loop = true;
+        video.muted=true;
         let mediaContainer = div.querySelector(".media-container");
         mediaContainer.appendChild(video)
 
