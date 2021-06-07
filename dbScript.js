@@ -40,7 +40,7 @@ function viewMedia(){
        </div>
        <div class = "action-container">
        <button class = "media-download">Download</button>
-       <button class = "media-delete">Delete</button>
+       <button class = "media-delete" data-id = "${cursor.value.mId}">Delete</button>
        </div>`;
        let downloadbtn = div.querySelector(".media-download");
        let deletebtn = div.querySelector(".media-delete");
