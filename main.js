@@ -14,6 +14,7 @@ function createWindow() {
         minWidth: 1030,
         minHeight: 825,
         resizable: true,
+        autoHideMenuBar: true,
         icon: path.join(__dirname, 'build/icon.icns')
     })
     win.loadURL(url.format({
