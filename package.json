@@ -1,0 +1,13 @@
+{
+    "name": "Nodecam",
+    "version": "1.0.0",
+    "description": "Click all you want.",
+    "main": "main.js",
+    "scripts": {
+        "start": "electron ."
+    },
+    "repository": "https://github.com/nerdynikhil/nodecam",
+    "devDependencies": {
+        "electron": "~1.6.2"
+    }
+}
